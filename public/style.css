@@ -5,6 +5,9 @@ body {
   color: FireBrick;
   margin-left: 40px;
 }
+#total {
+  color: black;
+}
 
 button {
 font-family: 'UnifrakturCook', cursive;

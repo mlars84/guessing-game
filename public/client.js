@@ -18,7 +18,7 @@ function startGame() {
   $('.container').append("<p> <img src ='https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Piratey%2C_vector_version.svg/789px-Piratey%2C_vector_version.svg.png'> Pirate Pete guesses: <span id='bot'></span></p>");
   $('.container').append('<button type="button" id="submit">Submit</button>');
   $('.quit').append('<button type="button" id="quit">Abandon/Quit Game</button>');
-  $('.quit').append('<p>Total guesses: <span id="count">0</span></p>');
+  $('.quit').append('<p id ="total">Total guesses: <span id="count">0</span></p>');
   var range = [0];
   if ($('.drop-down').val()=== 'small') {
     range.push(10);
