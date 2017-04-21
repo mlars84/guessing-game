@@ -26,28 +26,31 @@ app.post('/game', function(req, res){
     rando = parseInt(rando);
     if (number === rando){
       console.log('correct');
-      return 'correct :)';
+      return '<img src="https://s-media-cache-ak0.pinimg.com/originals/bd/64/52/bd64524d365b1cb58dcbed64e3a4e455.gif">';
     } else if (number > rando && number <= max){
       console.log('high');
-      return 'too high :/';
+      return '- too high :/';
     } else if(number < rando && number >= min) {
       console.log('low');
-      return 'too low :(';
+      return '- too low :(';
     }
     else if (number > max){
       console.log('max indicator');
-      return 'Entry out of bounds (too high)!! >:(';
+      return '    Entry out of bounds (too high)!! >:(';
     }
     else if(number < min){
       console.log('min indicator');
-      return 'Entry out of bounds (too low)!! >:(';
+      return '    Entry out of bounds (too low)!! >:(';
     }
   } // end checkFunc
+  var botGuess = randomNum(parseInt(min), parseInt(max));
   objectToCheck = {
   firsty: checkFunc(data.first),
   secondy: checkFunc(data.second),
   thirdy: checkFunc(data.third),
-  fourthy: checkFunc(data.fourth)
+  fourthy: checkFunc(data.fourth),
+  bot: checkFunc(botGuess),
+  botNum: botGuess
   };
 });
 

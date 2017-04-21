@@ -11,10 +11,11 @@ function onReady(){
 } // end onReady
 
 function startGame() {
-  $('.container').append('<p><input name="Player One" type="text" id="first" value=""><span id="firsty"></span></p>');
-  $('.container').append('<p><input name ="Player Two" type="text" id="second" value=""><span id="secondy"></span></p>');
-  $('.container').append('<p><input name="Player Three" type="text" id="third" value=""><span id="thirdy"></span></p>');
-  $('.container').append('<p><input name="Player Four" type="text" id="fourth" value=""><span id="fourthy"></span></p>');
+  $('.container').append('<p><input type="text" id="first" value=""><span id="firsty"></span></p>');
+  $('.container').append('<p><input type="text" id="second" value=""><span id="secondy"></span></p>');
+  $('.container').append('<p><input type="text" id="third" value=""><span id="thirdy"></span></p>');
+  $('.container').append('<p><input type="text" id="fourth" value=""><span id="fourthy"></span></p>');
+  $('.container').append("<p> <img src ='https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Piratey%2C_vector_version.svg/789px-Piratey%2C_vector_version.svg.png'> Pirate Pete guesses: <span id='bot'></span></p>");
   $('.container').append('<button type="button" id="submit">Submit</button>');
   $('.quit').append('<button type="button" id="quit">Abandon/Quit Game</button>');
   $('.quit').append('<p>Total guesses: <span id="count">0</span></p>');
@@ -70,11 +71,18 @@ function submit(){
     method: 'GET',
     success: function(response){
       console.log(response);
-      $('#firsty').text(' '+ response.firsty);
-      $('#secondy').text(' ' + response.secondy);
-      $('#thirdy').text(' ' + response.thirdy);
-      $('#fourthy').text(' ' + response.fourthy);
-
+      $('#firsty').append(' '+ response.firsty);
+      $('#secondy').append(' ' + response.secondy);
+      $('#thirdy').append(' ' + response.thirdy);
+      $('#fourthy').append(' ' + response.fourthy);
+      $('#bot').append(' ' + response.botNum + ' ' + response.bot);
+      setTimeout(function(){
+        $('#firsty').empty();
+        $('#secondy').empty();
+        $('#thirdy').empty();
+        $('#fourthy').empty();
+        $('#bot').empty();
+      }, 5000);
     }
   });
 } // end submit
