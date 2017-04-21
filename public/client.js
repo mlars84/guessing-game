@@ -2,7 +2,7 @@ $(document).ready(onReady);
 console.log('in client');
 var count = 0;
 
-
+// function that loads listeners and audio on ready
 function onReady(){
   $('#start').on('click', startGame);
   $('.container').on('click','#submit',submit);
@@ -10,6 +10,7 @@ function onReady(){
   $("#autoplay").get(0).play();
 } // end onReady
 
+// function that appends and creates range and sends range to server
 function startGame() {
   $('.container').append('<p><input type="text" id="first" value=""><span id="firsty"></span></p>');
   $('.container').append('<p><input type="text" id="second" value=""><span id="secondy"></span></p>');
@@ -42,8 +43,9 @@ function startGame() {
   });
 } // end startGame
 
-
+// function that sends server the guesses. server replies with results
 function submit(){
+  // used to only be able to play three rounds(three tries each)
   count += 4;
   if(count > 12){
     quitFunction();
@@ -71,11 +73,13 @@ function submit(){
     method: 'GET',
     success: function(response){
       console.log(response);
+      //appends results to DOM
       $('#firsty').append(' '+ response.firsty);
       $('#secondy').append(' ' + response.secondy);
       $('#thirdy').append(' ' + response.thirdy);
       $('#fourthy').append(' ' + response.fourthy);
       $('#bot').append(' ' + response.botNum + ' ' + response.bot);
+      // results dissapear after 5 seconds
       setTimeout(function(){
         $('#firsty').empty();
         $('#secondy').empty();
@@ -87,6 +91,7 @@ function submit(){
   });
 } // end submit
 
+// function to return to setup
 function quitFunction(){
   $('.container').empty();
   $('.quit').empty();

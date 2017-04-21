@@ -14,11 +14,12 @@ var max = -1;
 app.use( express.static( 'public' ) );
 app.use( bodyParser.urlencoded( { extended: true } ) );
 
-// spin up server
+// server
 app.listen( 3000, function(){
   console.log( 'server up on:', 3000 );
 });
 
+// checks to see how the guesses match up to the random number the server generated
 app.post('/game', function(req, res){
   var data = req.body;
   function checkFunc (number){
@@ -43,6 +44,8 @@ app.post('/game', function(req, res){
       return '    Entry out of bounds (too low)!! >:(';
     }
   } // end checkFunc
+
+  // opject of results from user input
   var botGuess = randomNum(parseInt(min), parseInt(max));
   objectToCheck = {
   firsty: checkFunc(data.first),
@@ -54,6 +57,7 @@ app.post('/game', function(req, res){
   };
 });
 
+// post that takes in range and actually creates the random number
 app.post('/somethingElse', function (req, res) {
   console.log(req.body.min,req.body.max);
   rando = randomNum(parseInt(req.body.min), parseInt(req.body.max));
@@ -63,8 +67,7 @@ app.post('/somethingElse', function (req, res) {
   res.sendStatus(200);
 });
 
-
-
+// sends results to client
 app.get('/game', function(req, res){
   console.log('/game');
   //res.sendStatus(200);
