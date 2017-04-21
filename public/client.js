@@ -1,18 +1,23 @@
 $(document).ready(onReady);
 console.log('in client');
+var count = 0;
 
 
 function onReady(){
   $('#start').on('click', startGame);
   $('.container').on('click','#submit',submit);
+  $('.quit').on('click','#quit',quitFunction);
+  $("#autoplay").get(0).play();
 } // end onReady
 
 function startGame() {
-  $('.container').append('<p><input type="text" id="first" value=""></p>');
-  $('.container').append('<p><input type="text" id="second" value=""></p>');
-  $('.container').append('<p><input type="text" id="third" value=""></p>');
-  $('.container').append('<p><input type="text" id="fourth" value=""></p>');
+  $('.container').append('<p><input name="Player One" type="text" id="first" value=""><span id="firsty"></span></p>');
+  $('.container').append('<p><input name ="Player Two" type="text" id="second" value=""><span id="secondy"></span></p>');
+  $('.container').append('<p><input name="Player Three" type="text" id="third" value=""><span id="thirdy"></span></p>');
+  $('.container').append('<p><input name="Player Four" type="text" id="fourth" value=""><span id="fourthy"></span></p>');
   $('.container').append('<button type="button" id="submit">Submit</button>');
+  $('.quit').append('<button type="button" id="quit">Abandon/Quit Game</button>');
+  $('.quit').append('<p>Total guesses: <span id="count">0</span></p>');
   var range = [0];
   if ($('.drop-down').val()=== 'small') {
     range.push(10);
@@ -38,6 +43,11 @@ function startGame() {
 
 
 function submit(){
+  count += 4;
+  if(count > 12){
+    quitFunction();
+  }
+  $('#count').text(count);
   var objectToSend = {
     first: $('#first').val(),
     second: $('#second').val(),
@@ -60,16 +70,17 @@ function submit(){
     method: 'GET',
     success: function(response){
       console.log(response);
-      $('.container').append(response.firsty);
-    }
-  });
+      $('#firsty').text(' '+ response.firsty);
+      $('#secondy').text(' ' + response.secondy);
+      $('#thirdy').text(' ' + response.thirdy);
+      $('#fourthy').text(' ' + response.fourthy);
 
-  $.ajax({
-    url: '/somethingElse',
-    method: 'GET',
-    success: function(response){
-      console.log(response);
     }
-
   });
 } // end submit
+
+function quitFunction(){
+  $('.container').empty();
+  $('.quit').empty();
+  count = 0;
+} // end quitFunction

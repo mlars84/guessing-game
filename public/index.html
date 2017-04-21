@@ -8,14 +8,31 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <h1>Captain Psi's Guessing Game</h1>
+    <h2>Arrrrr you brave enough to play??</h2>
+    <p>
+      Avast ye, pick a range Matey from that thar dropdown.<br>
+      To start yer game, click the 'Start Game' button. To abandon ship, click<br>
+      the 'Abandon/Quit Game' button. You and yer crewmates get three guesses each.<br>
+      Guess correctly and get the treasure. Guess wrong and you'll be walking<br>
+      the plank, scallywag! No hornswaggling!
+    </p>
+    <select class="drop-down">
+      <option value="small">0-10</option>
+      <option value="medium">0-100</option>
+      <option value="large">0-1000</option>
+    </select>
+    <button id="start" type="button" name="start">Start Game</button>
     <div class="container">
-      <select class="drop-down">
-        <option value="small">0-10</option>
-        <option value="medium">0-100</option>
-        <option value="large">0-1000</option>
-      </select>
-      <button id="start" type="button" name="start">Start Game</button>
-      
+
     </div>
+    <br>
+
+    <div class="quit">
+
+    </div>
+    <audio controls autoplay>
+      <source id='autoplay' src="Pirate Music - Pirate Raid.mp3" type="audio/mpeg" loop="loop">
+    </audio>
   </body>
 </html>
